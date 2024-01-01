@@ -57,10 +57,10 @@ async function displayData(photographers) {
       infoContainer.appendChild(priceElement);
       userCardDOM.appendChild(infoContainer);
   
-      // Add a click event listener to the article element
+      
       userCardDOM.addEventListener("click", (event) => {
-        window.location.href = "#";
-      });
+        window.location.href = `/photographespages/mimikeel.html`;
+    });
     }
   }
 
