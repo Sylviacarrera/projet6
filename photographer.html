@@ -1,37 +1,75 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
-  </head>
-  <body>
-    <header>
-      <img src="assets/images/logo.png" class="logo" />
-    </header>
-    <main id="main">
-      <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+
+<head>
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+  <title>Fisheye - photographe </title>
+</head>
+
+<body>
+  <header>
+    <img src="assets/images/logo.png" class="logo" />
+  </header>
+  <main id="main">
+    
+    <div class="photograph-header">
+      <div class="parapgraphe1">
+      <h1>Mimi Keel</h1>
+    <p>London, UK</p>
+    <p>Voir le beau dans le quotidien</p></div>
+      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <img src="./public/assets/photographers/MimiKeel.jpg" alt="Mimi Keel Photo">
+    </div>
+    
+
+    <div class="sorting-section">
+      <h3>Trier</h3>
+      
+      <button onclick="sortByName()">Par nom</button>
+      <button onclick="sortByDate()">Par date</button>
+    </div>
+
+    
+    <div class="photo-container">
+      <div class="photo-item">
+        <img src="./public/assets/images/Mimi/Animals_Rainbow.jpg" style="width: 500px; height: 500px;">
+        <p>Description de la photo 1</p>
+        <i class="heart-icon">❤️</i>
       </div>
-    </main>
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
-    <script src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
-  </body>
+
+      <div class="photo-item">
+        <img src="./public/assets/images/Mimi/Event_BenevidesWedding.jpg" style="width: 500px; height: 500px;">
+        <p>Description de la photo 2</p>
+        <i class="heart-icon">❤️</i>
+      </div>
+
+      <div class="photo-item">
+        <img src="./public/assets/images/Mimi/Portrait_Background.jpg" style="width: 500px; height: 500px;">
+        <p>Description de la photo 3</p>
+        <i class="heart-icon">❤️</i>
+      </div>
+    </div>
+
+  </main>
+  <div id="contact_modal">
+    <div class="modal">
+      <header>
+        <h2>Contactez-moi</h2>
+        <img src="assets/icons/close.svg" onclick="closeModal()" />
+      </header>
+      <form>
+        <div>
+          <label>Prénom</label>
+          <input />
+        </div>
+        <button class="contact_button">Envoyer</button>
+      </form>
+    </div>
+  </div>
+  <script type="module" src="./scripts/pages/photographer.js"></script>
+</body>
+
 </html>
