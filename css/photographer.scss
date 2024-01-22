@@ -1,0 +1,122 @@
+#contact_modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.photograph-header {
+    background-color: #FAFAFA;
+    height: 300px;
+    margin: 0 100px;
+}
+
+.contact_button {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal {
+    border-radius: 5px;
+    background-color: #DB8876;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 35px;
+    margin: auto;
+}
+
+.modal header {
+    justify-content: space-between;
+    width: 100%;
+}
+
+.modal header img {
+    cursor: pointer;
+}
+
+.modal header h2 {
+    font-size: 64px;
+    font-weight: normal;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+form label {
+    color: #312E2E;
+    font-size: 36px;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: self-start;
+    margin-bottom: 26px;
+}
+
+form input {
+    width: 100%;
+    height: 68px;
+    border: none;
+    border-radius: 5px;
+}
+
+#lightBox {
+    display: none;
+    background-color: #FAFAFA;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Permet le défilement si le contenu dépasse la taille de la fenêtre */
+
+    .light-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+
+        .header-lightbox {
+            height: 50px;
+            align-items: center;
+            display: flex;
+            justify-content: flex-end;
+
+            i{
+                margin-right: 40px;
+            }
+        }
+
+        .media-lightBox {
+            display: flex;
+            justify-content: center;
+            gap: 100px;
+            align-items: center;
+
+            img, video {
+                height: 500px;
+                width: 500px;
+                /* Ajoutez d'autres styles nécessaires pour les médias */
+            }
+        }
+    }
+}

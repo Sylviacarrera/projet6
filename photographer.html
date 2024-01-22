@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Fisheye - photographe </title>
+</head>
+
+<body>
+  <header>
+    <a href="index.html">
+      <img src="assets/images/logo.png" class="logo" alt="fisheye logo" />
+    </a>
+  </header>
+  <main id="main">
+
+    <div id="detailContainer" class="photograph-header">
+
+    </div>
+
+
+    <div class="sorting-section">
+      <h3>Trier par</h3>
+
+      <value id="sortByName">Par nom</value>
+      <value id="sortByDate">Par date</value>
+      <value id="sortByPopularity">Par Popularité</value>
+
+    </div>
+
+
+    <div id="mediaContainer" class="photo-container">
+
+    </div>
+
+  </main>
+  <footer>
+    <div>
+      <div class="total-like-container">
+        <p id="nmbLike"></p>
+        <i class='fa-solid fa-heart'></i>
+      </div>
+      <div class="price-container">
+        <p>
+          <span id="priceContainer"></span> / Jours
+        </p>
+      </div>
+
+    </div>
+  </footer>
+  <div id="contact_modal">
+    <div class="modal">
+      <header>
+        <h2>Contactez-moi</h2>
+        <img id="closeModal" src="assets/icons/close.svg" />
+      </header>
+      <form>
+        <div>
+          <div id="photographer_name"></div>
+          <label for="firstName">Prénom</label>
+          <input type="text" id="firstName" name="firstName" required />
+        </div>
+        <div>
+          <label for="lastName">Nom</label>
+          <input type="text" id="lastName" name="lastName" required />
+        </div>
+        <div>
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" required></textarea>
+        </div>
+        <button class="contact_button">Envoyer</button>
+      </form>
+    </div>
+  </div>
+  <div id="lightBox">
+    <div class="light-container">
+      <div class="header-lightbox">
+        <i id="closeLightbox" class="fa-solid fa-xmark fa-2xl"></i>
+      </div>
+      <div class="card-body">
+        <div class="media-lightBox">
+          <i id="previousArrow" class="fa-solid fa-arrow-left fa-2xl"></i>
+          <div id="mediaContainerlightbox">
+
+          </div>
+          <i id="nextArrow" class="fa-solid fa-arrow-right fa-2xl"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="./scripts/pages/photographer.js"></script>
+</body>
+
+</html>
