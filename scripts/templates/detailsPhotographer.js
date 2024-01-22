@@ -97,7 +97,7 @@ export const detailPhotographer = data => {
       heart.classList.add('fa-regular', 'fa-heart')
       likecontainer.appendChild(heart)
       let isLiked = false
-      heart.style.color = "#f92415"
+      heart.style.color = "#901C1C"
       nmbLike += el.likes
       heart.addEventListener('click', (event) => {
     event.stopPropagation();  
