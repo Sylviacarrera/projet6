@@ -8,80 +8,61 @@ const getUrlParamsId = () => {
     let url = window.location.href;
     let urlObj = new URL(url);
     let id = urlObj.searchParams.get("id");
-    return id
+    return id;
+}
+
+const sortMedia = async (selectedOption) => {
+    const id = getUrlParamsId();
+    const photographer = await getPhotographerById(id);
+    const medias = await getMediaByPhotographer(id);
+
+    switch (selectedOption) {
+        case 'name':
+            photographer.medias = sortByName(medias);
+            break;
+        case 'date':
+            photographer.medias = sortByDate(medias);
+            break;
+        case 'popularity':
+            photographer.medias = sortByPopularity(medias);
+            break;
+        default:
+            break;
+    }
+
+    const detail = detailPhotographer(photographer);
+    detail.createDisplayDom(photographer);
 }
 
 const init = async () => {
-
     /*
-        j'ajoute tous mes listenr ici, ca remplace le onclick qui n'a pas l'air de marcher en script module
+        j'ajoute tous mes listener ici, ca remplace le onclick qui n'a pas l'air de marcher en script module
     */
 
     //pour le filtre par date    
-    document.querySelector('#sortByDate').addEventListener('click', () => {
-        sortMediaByDate()
-    })
-
-    //pour le filtre par nom   
-    document.querySelector('#sortByName').addEventListener('click', () => {
-        sortMediaByName()
-    })
-
-    //pour le filtre par popularité
-    document.querySelector('#sortByPopularity').addEventListener('click', () => {
-        sortMediaByPopularity()
-    })
+    document.querySelector('#sortBySelect').addEventListener('change', () => {
+        const selectedOption = document.querySelector('#sortBySelect').value;
+        sortMedia(selectedOption);
+    });
 
     //pour fermer la modale
     document.querySelector('#closeModal').addEventListener('click', () => {
-        closeModal()
-    })
+        closeModal();
+    });
 
     //pour fermer la lightbox
     document.querySelector('#closeLightbox').addEventListener('click', () => {
-        closeLightbox()
-    })
+        closeLightbox();
+    });
 
-    const id = getUrlParamsId()
-    const photographer = await getPhotographerById(id)
-    const medias = await getMediaByPhotographer(id)
+    const id = getUrlParamsId();
+    const photographer = await getPhotographerById(id);
+    const medias = await getMediaByPhotographer(id);
     console.log(medias);
 
-    photographer.medias = medias
-    const detail = detailPhotographer(photographer)
-    detail.createDisplayDom(photographer)
+    photographer.medias = medias;
+    const detail = detailPhotographer(photographer);
+    detail.createDisplayDom(photographer);
 }
 
-const sortMediaByDate = async () => {
-    const id = getUrlParamsId()
-    const photographer = await getPhotographerById(id)
-    const medias = await getMediaByPhotographer(id)
-    photographer.medias = sortByDate(medias)
-    const detail = detailPhotographer(photographer)
-    detail.createDisplayDom(photographer)
-}
-
-const sortMediaByPopularity = async () => {
-    const id = getUrlParamsId()
-    const photographer = await getPhotographerById(id)
-    const medias = await getMediaByPhotographer(id)
-    photographer.medias = sortByPopularity(medias)
-    const detail = detailPhotographer(photographer)
-    detail.createDisplayDom(photographer)
-
-}
-
-const sortMediaByName = async () => {
-    const id = getUrlParamsId()
-    const photographer = await getPhotographerById(id)
-    const medias = await getMediaByPhotographer(id)
-    photographer.medias = sortByName(medias)
-    const detail = detailPhotographer(photographer)
-    detail.createDisplayDom(photographer)
-
-}
-
-
-
-init()
-
+init();

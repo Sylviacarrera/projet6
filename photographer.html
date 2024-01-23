@@ -27,11 +27,12 @@
 
     <div class="sorting-section">
       <h3>Trier par</h3>
-
-      <value id="sortByName">Par nom</value>
-      <value id="sortByDate">Par date</value>
-      <value id="sortByPopularity">Par Popularité</value>
-
+      <select id="sortBySelect">
+        <option value="popularity">Par popularité</option>
+        <option value="date">Par date</option>
+        <option value="name">Par nom</option>
+       
+      </select>
     </div>
 
 
@@ -71,11 +72,11 @@
           <input type="text" id="lastName" name="lastName" required />
         </div>
         <div>
-          <label for="email">E-mail</label>
+          <label for="email">Email</label>
           <input type="email" id="email" name="email" required />
         </div>
         <div>
-          <label for="message">Message</label>
+          <label for="message">Votre Message</label>
           <textarea id="message" name="message" rows="4" required></textarea>
         </div>
         <button class="contact_button">Envoyer</button>

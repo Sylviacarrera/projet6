@@ -20,7 +20,7 @@ export const detailPhotographer = data => {
     })
 
     /* les deux listener qui suis, c'est pour gerer le passage au media suivant
-    et precedent en appuyant sur les touche du clavier, bonus ^^
+    et precedent en appuyant sur les touche du clavier
     */
     document.addEventListener('keyup', function (event) {
       if (event.code === 'ArrowRight') {
