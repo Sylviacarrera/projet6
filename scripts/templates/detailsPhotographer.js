@@ -19,6 +19,10 @@ export const detailPhotographer = data => {
       displayNextMedia(medias)
     })
 
+    // Ajoutez l'attribut tabindex aux flèches
+    document.querySelector('#previousArrow').setAttribute('tabindex', '0');
+    document.querySelector('#nextArrow').setAttribute('tabindex', '0');
+
     /* les deux listener qui suis, c'est pour gerer le passage au media suivant
     et precedent en appuyant sur les touche du clavier
     */
@@ -60,6 +64,8 @@ export const detailPhotographer = data => {
       displayModal(name)
     })
     buttonContainer.textContent = "Contactez-moi"
+    // Ajoutez l'attribut tabindex
+    buttonContainer.setAttribute('tabindex', '0');
     container.appendChild(buttonContainer)
     const avatar = document.createElement('img')
     avatar.setAttribute('src', `/assets/photographers/${portrait}`)
@@ -68,10 +74,19 @@ export const detailPhotographer = data => {
 
       const photoItem = document.createElement('div')
       photoItem.classList.add('photo-item')
+
+      // Ajoutez cet attribut tabindex à chaque élément contenant le média
+    photoItem.setAttribute('tabindex', '0');
       // dans le container de la photo ou la video, j'ajoute un listener pour afficher la ligthbox
       photoItem.addEventListener('click', () => {
         displayLightBox(el) // je place le media courant en paramettre, pour pouvoir l'afficher dans la fonction d'affichage de la lightbox
       })
+       // Ajoutez cet événement pour gérer la touche "Entrée"
+    photoItem.addEventListener('keydown', (event) => {
+      if (event.code === 'Enter') {
+          displayLightBox(el);
+      }
+  });
       mediaContainer.appendChild(photoItem)
       if (el.video) {
         const video = document.createElement('video')
@@ -95,7 +110,15 @@ export const detailPhotographer = data => {
       descriptionContainer.appendChild(likecontainer)
       const heart = document.createElement('i')
       heart.classList.add('fa-regular', 'fa-heart')
+      heart.setAttribute('tabindex', '0');  // Ajoutez l'attribut tabindex
       likecontainer.appendChild(heart)
+
+    heart.addEventListener('keydown', (event) => {
+        if (event.code === 'Tab') {
+            event.stopPropagation();
+        }
+    });
+    
       let isLiked = false
       heart.style.color = "#901C1C"
       nmbLike += el.likes
