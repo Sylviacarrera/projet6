@@ -1,6 +1,12 @@
 export function displayModal(photographerName) {
     const modal = document.getElementById("contact_modal");
+    const overlay = document.getElementById("overlay");
+
     modal.style.display = "block";
+    overlay.style.display = "block";
+
+     // Ajoute la classe modal-open au body
+     document.body.classList.add('modal-open');
 
     // Ajoute la classe modal-open au body
     document.body.classList.add('modal-open');
@@ -8,10 +14,17 @@ export function displayModal(photographerName) {
     const photographerNameElement = document.getElementById("photographer_name");
     photographerNameElement.textContent = photographerName;
 
+    // Focus sur le premier élément focusable dans le formulaire
+    const firstFocusableElement = modal.querySelector('input:not([type="hidden"]), select, textarea, button');
+    if (firstFocusableElement) {
+        firstFocusableElement.focus();
+    }
+
     const form = modal.querySelector('form');
     if (form) {
         form.reset();  // Réinitialise le formulaire
-        form.addEventListener('submit', handleFormSubmit);
+        form.addEventListener('submit', handleFormSubmit);                  
+        form.addEventListener('keydown', handleFormKeydown);
     }
 }
 
@@ -33,6 +46,30 @@ function handleFormSubmit(event) {
     // Vous pouvez traiter les données du formulaire ici si nécessaire
 
     closeModal();
+}
+
+function handleFormKeydown(event) {
+    // Gère la navigation avec Tab et Shift + Tab dans le formulaire
+    if (event.code === 'Tab') {
+        const focusableElements = Array.from(this.querySelectorAll('input:not([type="hidden"]), select, textarea, button'));
+        const currentIndex = focusableElements.indexOf(document.activeElement);
+
+        if (event.shiftKey) {
+            // Shift + Tab
+            if (currentIndex > 0) {
+                focusableElements[currentIndex - 1].focus();
+                event.preventDefault();
+            }
+        } else {
+            // Tab
+            if (currentIndex < focusableElements.length - 1) {
+                focusableElements[currentIndex + 1].focus();
+                event.preventDefault();
+            }
+        }
+    }
+
+    // Ajoutez ici d'autres logiques de gestion des touches clavier si nécessaire
 }
 
 export function closeModal() {

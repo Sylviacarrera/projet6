@@ -5,7 +5,15 @@ export function displayLightBox(media) {
     const modal = document.getElementById("lightBox");
     modal.style.display = "block";
     displayMedia(media);
+    // Ajoutez le focus au container de la lightbox pour permettre la navigation au clavier
+    const lightboxContainer = document.getElementById("lightBox");
+    lightboxContainer.setAttribute('tabindex', '0');
+    lightboxContainer.focus();
+
+    // Ajoutez des événements pour gérer les touches du clavier
+    lightboxContainer.addEventListener('keydown', handleLightboxKeydown);
 }
+
 
 // pour fermer la lightbox
 export function closeLightbox() {
@@ -52,4 +60,23 @@ export function displayPreviousMedia(mediaArray) {
     const index = mediaArray.findIndex(media => media.id === currentMedia.id);
     currentMedia = mediaArray[(index - 1 + mediaArray.length) % mediaArray.length]; // Utilisation de la boucle infinie
     displayMedia(currentMedia);
+}
+// Fonction pour gérer les événements clavier dans la lightbox
+function handleLightboxKeydown(event) {
+    switch (event.code) {
+        case 'ArrowLeft':
+            // Pour la flèche gauche, afficher le média précédent
+            displayPreviousMedia(mediaArray);
+            break;
+        case 'ArrowRight':
+            // Pour la flèche droite, afficher le média suivant
+            displayNextMedia(mediaArray);
+            break;
+        case 'Escape':
+            // Pour la touche "Escape", fermer la lightbox
+            closeLightbox();
+            break;
+        default:
+            break;
+    }
 }
