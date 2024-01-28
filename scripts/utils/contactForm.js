@@ -18,6 +18,18 @@ export function displayModal(photographerName) {
 function handleFormSubmit(event) {
     event.preventDefault();
 
+    // Récupère les données du formulaire
+    const form = event.target;
+    const formData = new FormData(form);
+
+    // Crée un objet pour stocker les données du formulaire
+    let formDataObject = {};
+    formData.forEach((value, key) => {
+        formDataObject[key] = value;
+    });
+
+    // Affiche les données du formulaire dans la console
+    console.log(formDataObject);
     // Vous pouvez traiter les données du formulaire ici si nécessaire
 
     closeModal();

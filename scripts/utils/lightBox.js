@@ -1,6 +1,6 @@
 let currentMedia; // cette variable va permettre de garder en memoire le media a affiche
 
-// cette fonction est pour ouvrir la lightbox, elle appelle aussi la fonction pour afficher l'image ou la video dedans
+// cette fonction est pour ouvrir la lightbox, elle appelle aussi la fonction pour afficher l'image ou la vidéo dedans
 export function displayLightBox(media) {
     const modal = document.getElementById("lightBox");
     modal.style.display = "block";
@@ -43,18 +43,13 @@ export function displayMedia(media) {
 // fonction qui va afficher le media suivant
 export function displayNextMedia(mediaArray) {
     const index = mediaArray.findIndex(media => media.id === currentMedia.id);
-    if (index !== mediaArray.length - 1) {
-        currentMedia = mediaArray[index + 1];
-        displayMedia(currentMedia);
-    }
+    currentMedia = mediaArray[(index + 1) % mediaArray.length]; // Utilisation de la boucle infinie
+    displayMedia(currentMedia);
 }
 
 // fonction qui va afficher le media precedent
 export function displayPreviousMedia(mediaArray) {
     const index = mediaArray.findIndex(media => media.id === currentMedia.id);
-    if (index !== 0) {
-        currentMedia = mediaArray[index - 1];
-        displayMedia(currentMedia);
-    }
+    currentMedia = mediaArray[(index - 1 + mediaArray.length) % mediaArray.length]; // Utilisation de la boucle infinie
+    displayMedia(currentMedia);
 }
-

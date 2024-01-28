@@ -9,6 +9,7 @@ body {
     display: flex;
     flex-direction: column;
     margin: 0;
+    margin-bottom: 20px;
 
     #main {
         .photograph-header {
@@ -181,6 +182,7 @@ body {
         flex-direction: row;
         width: 33%;
         flex-wrap: wrap;
+        justify-content: center;
 
         img,
         video {
@@ -259,6 +261,7 @@ body {
                 top: 1%;
                 right: 2%;
                 cursor: pointer;
+                font-size: 25px;
 
             }
 
@@ -266,6 +269,10 @@ body {
                 color: #901C1C;
             }
 
+            .chevronstyle {
+                font-size: 48px;
+                cursor: pointer;
+            }
             .media-lightBox img,
             .media-lightBox video {
                 width: 50rem;
