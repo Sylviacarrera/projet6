@@ -1,3 +1,4 @@
+
 export function displayModal(photographerName) {
     const modal = document.getElementById("contact_modal");
     const overlay = document.getElementById("overlay");
@@ -26,6 +27,7 @@ export function displayModal(photographerName) {
         form.addEventListener('submit', handleFormSubmit);                  
         form.addEventListener('keydown', handleFormKeydown);
     }
+    
 }
 
 function handleFormSubmit(event) {
@@ -68,14 +70,26 @@ function handleFormKeydown(event) {
             }
         }
     }
+    
 
     // Ajoutez ici d'autres logiques de gestion des touches clavier si nécessaire
 }
 
+
 export function closeModal() {
     const modal = document.getElementById("contact_modal");
+    const overlay = document.getElementById("overlay");
+
+    // Retient la position de défilement actuelle
+    const scrollPosition = window.scrollY;
+
     modal.style.display = "none";
+    overlay.style.display = "none";
 
     // Retire la classe modal-open du body
     document.body.classList.remove('modal-open');
+
+    // Rétablit la position de défilement à la fermeture de la modale
+    window.scrollTo(0, scrollPosition);
+    
 }

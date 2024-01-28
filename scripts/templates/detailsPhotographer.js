@@ -111,12 +111,14 @@ export const detailPhotographer = data => {
       const heart = document.createElement('i')
       heart.classList.add('fa-regular', 'fa-heart')
       heart.setAttribute('tabindex', '0');  // Ajoutez l'attribut tabindex
+      heart.setAttribute('data-like-button', 'true'); // Ajoutez cet attribut personnalisé
       likecontainer.appendChild(heart)
 
     heart.addEventListener('keydown', (event) => {
         if (event.code === 'Tab') {
             event.stopPropagation();
-        }
+        }       
+
     });
     
       let isLiked = false
