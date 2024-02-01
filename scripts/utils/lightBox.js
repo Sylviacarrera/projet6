@@ -78,6 +78,12 @@ export function handleLightboxKeydown(event,mediaArray) {
             // Pour la touche "Escape", fermer la lightbox
             closeLightbox();
             break;
+        case 'Enter':
+            // Pour la touche "Enter", vérifier s'il s'agit de la croix de fermeture, puis fermer la lightbox
+            if (event.target.id === 'closeLightbox') {
+                closeLightbox();
+            }
+            break;
         default:
             break;
     }

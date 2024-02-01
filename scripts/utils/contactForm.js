@@ -1,13 +1,10 @@
-
 export function displayModal(photographerName) {
     const modal = document.getElementById("contact_modal");
     const overlay = document.getElementById("overlay");
 
+    // Affiche la modal et l'overlay
     modal.style.display = "block";
     overlay.style.display = "block";
-
-     // Ajoute la classe modal-open au body
-     document.body.classList.add('modal-open');
 
     // Ajoute la classe modal-open au body
     document.body.classList.add('modal-open');
@@ -23,14 +20,23 @@ export function displayModal(photographerName) {
 
     const form = modal.querySelector('form');
     if (form) {
-        form.reset();  // Réinitialise le formulaire
+        // Réinitialise le formulaire
+        form.reset();  
+        // Ajoute des écouteurs d'événements pour le formulaire
         form.addEventListener('submit', handleFormSubmit);                  
         form.addEventListener('keydown', handleFormKeydown);
     }
-    
+
+    const closeModalButton = document.getElementById("closeModal");
+
+    // Assurez-vous que l'élément de fermeture est focusable avec tabindex
+    if (closeModalButton) {
+        closeModalButton.tabIndex = 0;
+    }
 }
 
 function handleFormSubmit(event) {
+    // Empêche la soumission normale du formulaire
     event.preventDefault();
 
     // Récupère les données du formulaire
@@ -47,6 +53,7 @@ function handleFormSubmit(event) {
     console.log(formDataObject);
     // Vous pouvez traiter les données du formulaire ici si nécessaire
 
+    // Ferme la modal après la soumission
     closeModal();
 }
 
@@ -69,12 +76,14 @@ function handleFormKeydown(event) {
                 event.preventDefault();
             }
         }
+                        
+    } else if (event.code === 'Escape') {
+        // Ferme la modal si la touche "Échap" est pressée
+        closeModal();
     }
-    
 
     // Ajoutez ici d'autres logiques de gestion des touches clavier si nécessaire
 }
-
 
 export function closeModal() {
     const modal = document.getElementById("contact_modal");
@@ -83,6 +92,7 @@ export function closeModal() {
     // Retient la position de défilement actuelle
     const scrollPosition = window.scrollY;
 
+    // Masque la modal et l'overlay
     modal.style.display = "none";
     overlay.style.display = "none";
 
@@ -91,5 +101,4 @@ export function closeModal() {
 
     // Rétablit la position de défilement à la fermeture de la modale
     window.scrollTo(0, scrollPosition);
-    
 }
