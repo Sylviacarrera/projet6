@@ -1,12 +1,12 @@
 import { displayModal } from "../utils/contactForm"
-import { nmbLikeContainer, priceContainer, container, mediaContainer} from '../utils/domLinker.js';
+import { nmbLikeContainer, priceContainer, container, mediaContainer } from '../utils/domLinker.js';
 // j'importe ici la fonction qui permet d'ouvrir la lightbox
 import { displayLightBox, displayNextMedia, displayPreviousMedia } from "../utils/lightBox"
 
 export const detailPhotographer = data => {
-  const { name, city, country, tagline, portrait, medias, id, price } = data;
+  const { name, city, country, tagline, portrait, medias, price } = data;
 
-  function createDisplayDom(data) {
+  function createDisplayDom() {
     // J'ajoute les listeners pour les flèches gauche et droite de la lightbox ici,
     // car c'est l'endroit où j'ai accès au tableau de mes médias filtrés.
 
@@ -65,13 +65,19 @@ export const detailPhotographer = data => {
     // Ajoute l'avatar
     const avatar = document.createElement('img');
     avatar.setAttribute('src', `/assets/photographers/${portrait}`);
+    avatar.alt = name
     container.appendChild(avatar);
 
     // Parcourt les médias
     medias.forEach((el) => {
-      const photoItem = document.createElement('div');
+      const a = document.createElement('a')
+      a.href = '#'
+
+      const photoItem = document.createElement('article');
       photoItem.classList.add('photo-item');
-      mediaContainer.appendChild(photoItem);
+
+      a.appendChild(photoItem)
+      mediaContainer.appendChild(a);
 
       if (el.video) {
         // Ajoute la vidéo
@@ -80,13 +86,14 @@ export const detailPhotographer = data => {
 
         const source = document.createElement('source');
         source.setAttribute('src', `/assets/medias/${el.video}`);
+        source.alt = el.title
         video.appendChild(source);
 
         // Ajoutez cet attribut tabindex à chaque élément contenant le média
         video.setAttribute('tabindex', '0');
 
         // Ajoute un listener pour afficher la lightbox
-        video.addEventListener('click', (event) => {
+        video.addEventListener('click', () => {
           displayLightBox(el, medias);
         });
 
@@ -100,6 +107,7 @@ export const detailPhotographer = data => {
         // Ajoute l'image
         const img = document.createElement('img');
         img.setAttribute('src', `/assets/medias/${el.image}`);
+        img.alt = el.title
         photoItem.appendChild(img);
 
         // Ajoutez cet attribut tabindex à chaque élément contenant le média
@@ -134,6 +142,7 @@ export const detailPhotographer = data => {
       // Ajoute l'icône de cœur
       const heart = document.createElement('i');
       heart.classList.add('fa-regular', 'fa-heart');
+      heart.setAttribute('aria-label', 'likes')
       heart.setAttribute('tabindex', '0');  // Ajoutez l'attribut tabindex
       heart.setAttribute('data-like-button', 'true'); // Ajoutez cet attribut personnalisé
       likecontainer.appendChild(heart);
@@ -154,7 +163,7 @@ export const detailPhotographer = data => {
       nmbLike += el.likes;
 
       // Ajoute un listener pour le clic sur le cœur
-      heart.addEventListener('click', (event) => {
+      heart.addEventListener('click', () => {
         isLiked = !isLiked;
         paralike.textContent = isLiked ? el.likes + 1 : el.likes;
         nmbLikeContainer.textContent = isLiked ? parseInt(nmbLikeContainer.textContent) + 1 : parseInt(nmbLikeContainer.textContent) - 1;
