@@ -1,7 +1,7 @@
 let currentMedia; // cette variable va permettre de garder en memoire le media a affiche
 
 // cette fonction est pour ouvrir la lightbox, elle appelle aussi la fonction pour afficher l'image ou la vidéo dedans
-export function displayLightBox(media) {
+export function displayLightBox(media, mediaArray) {
     const modal = document.getElementById("lightBox");
     modal.style.display = "block";
     displayMedia(media);
@@ -11,7 +11,9 @@ export function displayLightBox(media) {
     lightboxContainer.focus();
 
     // Ajoutez des événements pour gérer les touches du clavier
-    lightboxContainer.addEventListener('keydown', handleLightboxKeydown);
+    lightboxContainer.addEventListener('keyup', function (event) {
+        handleLightboxKeydown(event,mediaArray)
+    });
 }
 
 
@@ -62,7 +64,7 @@ export function displayPreviousMedia(mediaArray) {
     displayMedia(currentMedia);
 }
 // Fonction pour gérer les événements clavier dans la lightbox
-function handleLightboxKeydown(event) {
+export function handleLightboxKeydown(event,mediaArray) {
     switch (event.code) {
         case 'ArrowLeft':
             // Pour la flèche gauche, afficher le média précédent

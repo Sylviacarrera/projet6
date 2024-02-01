@@ -1,6 +1,6 @@
 import { displayModal } from "../utils/contactForm"
 // j'importe ici la fonction qui permet d'ouvrir la lightbox
-import { displayLightBox, displayNextMedia, displayPreviousMedia } from "../utils/lightBox"
+import { displayLightBox, displayNextMedia, displayPreviousMedia, handleLightboxKeydown } from "../utils/lightBox"
 
 export const detailPhotographer = data => {
   const { name, city, country, tagline, portrait, medias, id, price } = data
@@ -23,18 +23,7 @@ export const detailPhotographer = data => {
     document.querySelector('#previousArrow').setAttribute('tabindex', '0');
     document.querySelector('#nextArrow').setAttribute('tabindex', '0');
 
-    /* les deux listener qui suis, c'est pour gerer le passage au media suivant
-    et precedent en appuyant sur les touche du clavier
-    */
-    document.addEventListener('keyup', function (event) {
-      if (event.code === 'ArrowRight') {
-        displayNextMedia(medias)
-      }
-      if (event.code === 'ArrowLeft') {
-        displayPreviousMedia(medias)
-      }
-    });
-   
+
 
     let nmbLike = 0 // nombre total de like a 0
     const nmbLikeContainer = document.querySelector('#nmbLike')
@@ -70,23 +59,11 @@ export const detailPhotographer = data => {
     const avatar = document.createElement('img')
     avatar.setAttribute('src', `/assets/photographers/${portrait}`)
     container.appendChild(avatar)
-    medias.forEach(el => {
-
+    medias.forEach((el) => {
       const photoItem = document.createElement('div')
       photoItem.classList.add('photo-item')
 
-      // Ajoutez cet attribut tabindex à chaque élément contenant le média
-    photoItem.setAttribute('tabindex', '0');
-      // dans le container de la photo ou la video, j'ajoute un listener pour afficher la ligthbox
-      photoItem.addEventListener('click', () => {
-        displayLightBox(el) // je place le media courant en paramettre, pour pouvoir l'afficher dans la fonction d'affichage de la lightbox
-      })
-       // Ajoutez cet événement pour gérer la touche "Entrée"
-    photoItem.addEventListener('keydown', (event) => {
-      if (event.code === 'Enter') {
-          displayLightBox(el);
-      }
-  });
+
       mediaContainer.appendChild(photoItem)
       if (el.video) {
         const video = document.createElement('video')
@@ -94,10 +71,35 @@ export const detailPhotographer = data => {
         const source = document.createElement('source')
         source.setAttribute('src', `/assets/medias/${el.video}`)
         video.appendChild(source)
+        // Ajoutez cet attribut tabindex à chaque élément contenant le média
+        video.setAttribute('tabindex', '0');
+        // dans le container de la photo ou la video, j'ajoute un listener pour afficher la ligthbox
+        video.addEventListener('click', (event) => {
+
+          displayLightBox(el,medias) // je place le media courant en paramettre, pour pouvoir l'afficher dans la fonction d'affichage de la lightbox
+        })
+        // Ajoutez cet événement pour gérer la touche "Entrée"
+        video.addEventListener('keydown', (event) => {
+          if (event.code === 'Enter') {
+            displayLightBox(el,medias);
+          }
+        });
       } else {
         const img = document.createElement('img')
         img.setAttribute('src', `/assets/medias/${el.image}`)
         photoItem.appendChild(img)
+        // Ajoutez cet attribut tabindex à chaque élément contenant le média
+        img.setAttribute('tabindex', '0');
+        // dans le container de la photo ou la video, j'ajoute un listener pour afficher la ligthbox
+        img.addEventListener('click', () => {
+          displayLightBox(el,medias) // je place le media courant en paramettre, pour pouvoir l'afficher dans la fonction d'affichage de la lightbox
+        })
+        // Ajoutez cet événement pour gérer la touche "Entrée"
+        img.addEventListener('keydown', (event) => {
+          if (event.code === 'Enter') {
+            displayLightBox(el,medias);
+          }
+        });
       }
       const descriptionContainer = document.createElement('div')
       photoItem.appendChild(descriptionContainer)
@@ -114,18 +116,20 @@ export const detailPhotographer = data => {
       heart.setAttribute('data-like-button', 'true'); // Ajoutez cet attribut personnalisé
       likecontainer.appendChild(heart)
 
-    heart.addEventListener('keydown', (event) => {
-        if (event.code === 'Tab') {
-            event.stopPropagation();
-        }       
+      heart.addEventListener('keydown', (event) => {
+        if (event.code === 'Enter') {
+          isLiked = !isLiked
+          paralike.textContent = isLiked ? el.likes + 1 : el.likes
+          nmbLikeContainer.textContent = isLiked ? parseInt(nmbLikeContainer.textContent) + 1 : parseInt(nmbLikeContainer.textContent) - 1
+          heart.classList.toggle('fa-regular')
+          heart.classList.toggle('fa-solid')        }
 
-    });
-    
+      });
+
       let isLiked = false
       heart.style.color = "#901C1C"
       nmbLike += el.likes
       heart.addEventListener('click', (event) => {
-    event.stopPropagation();  
         isLiked = !isLiked
         paralike.textContent = isLiked ? el.likes + 1 : el.likes
         nmbLikeContainer.textContent = isLiked ? parseInt(nmbLikeContainer.textContent) + 1 : parseInt(nmbLikeContainer.textContent) - 1

@@ -58,7 +58,6 @@ const init = async () => {
     const id = getUrlParamsId();
     const photographer = await getPhotographerById(id);
     const medias = await getMediaByPhotographer(id);
-    console.log(medias);
 
     photographer.medias = medias;
     const detail = detailPhotographer(photographer);

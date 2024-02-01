@@ -85,7 +85,7 @@ body {
             border-radius: 5px;
         }
 
-        #sortBySelect option {
+        #sortBySelect  {
             border-bottom: 1px solid #ccc;
         }
     }
@@ -172,7 +172,7 @@ body {
         margin-bottom: 20px;
         text-align: center;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         width: 33%;
         flex-wrap: wrap;
         justify-content: center;
@@ -202,10 +202,13 @@ body {
         
     }
 
+    #closeLightbox{
+        font-size: 2em;
+    }
+
     .section-picture-footer {
         display: flex;
         align-items: center;
-        justify-content: space-between;
     
         p {
             color: #901C1C;
