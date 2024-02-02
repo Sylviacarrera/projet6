@@ -163,7 +163,8 @@ export const detailPhotographer = data => {
       nmbLike += el.likes;
 
       // Ajoute un listener pour le clic sur le cœur
-      heart.addEventListener('click', () => {
+      heart.addEventListener('click', (event) => {
+        event.preventDefault();
         isLiked = !isLiked;
         paralike.textContent = isLiked ? el.likes + 1 : el.likes;
         nmbLikeContainer.textContent = isLiked ? parseInt(nmbLikeContainer.textContent) + 1 : parseInt(nmbLikeContainer.textContent) - 1;
