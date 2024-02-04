@@ -64,7 +64,7 @@ export function displayPreviousMedia(mediaArray) {
     displayMedia(currentMedia);
 }
 // Fonction pour gérer les événements clavier dans la lightbox
-export function handleLightboxKeydown(event,mediaArray) {
+export function handleLightboxKeydown(event, mediaArray) {
     switch (event.code) {
         case 'ArrowLeft':
             // Pour la flèche gauche, afficher le média précédent
@@ -82,6 +82,9 @@ export function handleLightboxKeydown(event,mediaArray) {
             // Pour la touche "Enter", vérifier s'il s'agit de la croix de fermeture, puis fermer la lightbox
             if (event.target.id === 'closeLightbox') {
                 closeLightbox();
+            } else {
+                // Pour la touche "Enter", déclencher le même comportement que la flèche droite
+                displayNextMedia(mediaArray);
             }
             break;
         default:

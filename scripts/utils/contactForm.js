@@ -89,9 +89,6 @@ export function closeModal() {
     const modal = document.getElementById("contact_modal");
     const overlay = document.getElementById("overlay");
 
-    // Retient la position de défilement actuelle
-    const scrollPosition = window.scrollY;
-
     // Masque la modal et l'overlay
     modal.style.display = "none";
     overlay.style.display = "none";
@@ -101,4 +98,6 @@ export function closeModal() {
 
     // Rétablit la position de défilement à la fermeture de la modale
     window.scrollTo(0, scrollPosition);
+
+    
 }
