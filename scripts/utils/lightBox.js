@@ -32,6 +32,7 @@ export function displayMedia(media) {
     if (currentMedia.image) {
         const image = document.createElement('img');
         image.src =  `./assets/medias/${currentMedia.image}`;
+        image.alt= currentMedia.title;
         mediaContainer.appendChild(image);
     }
 
