@@ -143,7 +143,7 @@ export const detailPhotographer = data => {
       const heart = document.createElement('i');
       heart.classList.add('fa-regular', 'fa-heart');
       heart.setAttribute('aria-label', 'likes')
-      heart.setAttribute('tabindex', '0');  // Ajoutez l'attribut tabindex
+      heart.setAttribute('tabindex', '0');  
       heart.setAttribute('data-like-button', 'true'); // Ajoutez cet attribut personnalisé
       likecontainer.appendChild(heart);
 
