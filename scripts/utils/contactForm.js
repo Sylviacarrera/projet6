@@ -82,7 +82,7 @@ function handleFormKeydown(event) {
         closeModal();
     }
 
-    // Ajoutez ici d'autres logiques de gestion des touches clavier si nécessaire
+
 }
 
 export function closeModal() {
