@@ -18,7 +18,7 @@ export const detailPhotographer = data => {
       displayNextMedia(medias);
     });
 
-    // Ajoutez l'attribut tabindex aux flèches
+    // Ajoutez l'attribut tabindex aux flèches (Accessibilité)
     document.querySelector('#previousArrow').setAttribute('tabindex', '0');
     document.querySelector('#nextArrow').setAttribute('tabindex', '0');
 
