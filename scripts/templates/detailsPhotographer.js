@@ -71,7 +71,6 @@ export const detailPhotographer = data => {
     // Parcourt les médias
     medias.forEach((el) => {
       const a = document.createElement('a')
-      a.href = '#'
 
       const photoItem = document.createElement('article');
       photoItem.classList.add('photo-item');
