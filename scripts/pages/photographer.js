@@ -36,7 +36,7 @@ const sortMedia = async (selectedOption) => {
 
 const init = async () => {
     /*
-        j'ajoute tous mes listener ici, ca remplace le onclick qui n'a pas l'air de marcher en script module
+        j'ajoute tous mes listener ici
     */
 
     //pour le filtre par date    
