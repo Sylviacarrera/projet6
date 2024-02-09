@@ -22,7 +22,7 @@ export const detailPhotographer = data => {
     document.querySelector('#previousArrow').setAttribute('tabindex', '0');
     document.querySelector('#nextArrow').setAttribute('tabindex', '0');
 
-    let nmbLike = 0; // nombre total de like à 0
+    let nmbLike = 0; 
 
     // Nettoie les conteneurs
     mediaContainer.innerHTML = "";

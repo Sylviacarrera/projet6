@@ -96,6 +96,7 @@ export function closeModal() {
     // Retire la classe modal-open du body
     document.body.classList.remove('modal-open');
 
+    let scrollPosition;
     // Rétablit la position de défilement à la fermeture de la modale
     window.scrollTo(0, scrollPosition);
 
